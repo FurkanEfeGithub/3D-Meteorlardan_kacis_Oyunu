@@ -1,0 +1,7 @@
+Uzaygemisi-meteor oyunumda koydugum yolun amacı sadece şerit mantıgı,yolun kaybolması önemsiz çünkü mesh renderini zaten en son kapatacım yol gözükmeyecek.
+
+2)Uzay gemisinin vb. hareketini rigidbody ile yapmamım amacı günlük hayat fizik kurallarına göre çarpışmalar olsun.gerçekçi olsun diye.Translate ile yaparsam böyle temiz fizikler olmayacaktı.
+
+3)Uzay gemisi küplerle çarpıştıgında bir zaman sonra rotationu kayıyor bunu engellemek için rigidbodydeki freze rotationların hepsinin tikini aktif etmen lazım.
+
+4)Uzay gemisinin hareketi z ekseninde eger rigidbodyde freze positionun  z eksenini dondurursan uzay gemisinin z ekseninde ileri hareketini dondurmuş olursun.Uzay gemisi ileri hareket edemez.
