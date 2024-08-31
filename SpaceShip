@@ -1,0 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpaceShip : MonoBehaviour
+{
+    float dikeyHiz=6f,yatayHiz=10f;//cubeBoyutu=0.1f;yatayHiz=6f
+    Rigidbody rb;
+    int i=1;
+    public GameObject MermiPrefab;
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    void FixedUpdate()//Farkli fps lerde hep stabil olarak 60 kere calistirilir.
+    {
+        float horizontalInput=Input.GetAxis("Horizontal");
+        rb.velocity=new Vector3(horizontalInput*yatayHiz*Time.deltaTime*50,//SAG,SOL TUŞLARIYLA HAREKET.
+        rb.velocity.y,
+        dikeyHiz*Time.deltaTime*50);//UZAY GEMİSİNİN OTO. İLERİ HAREKETİ.
+        if(transform.position.x>=9.5f)//SAG SINIR KONTROL
+        {
+            transform.position=new Vector3(9.5f,transform.position.y,transform.position.z);
+        }
+        if(transform.position.x<=-9.5f)//SOL SINIR KONTROL
+        {
+            transform.position=new Vector3(-9.5f,transform.position.y,transform.position.z);
+        }
+        i++;//ZAMAN GEÇTİKÇE OYUN HIZLANSİN.
+        if(i%500==0)
+        {
+            dikeyHiz++;
+            yatayHiz++;//Çok hızlandıgı için yatay hizi da artıtıyorum.
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            //transform.position=MermiPrefab.transform.position;
+            Instantiate(MermiPrefab,transform.position,Quaternion.identity);
+        }
+    }
+}
