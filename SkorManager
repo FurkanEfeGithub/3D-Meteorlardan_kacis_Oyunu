@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class SkorManager : MonoBehaviour
+{
+    public Text skor_tx,yakitSkor_tx;
+    public static float skor,yakitSkor;
+    // Start is called before the first frame update
+    void Start()
+    {
+        skor=0;
+        yakitSkor=Random.Range(100,200);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        skor_tx.text=skor.ToString();
+        yakitSkor_tx.text=yakitSkor.ToString();
+    }
+}
