@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Way : MonoBehaviour
+{
+    public GameObject wayPrefab;
+    bool yolYapildi=false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    void OnTriggerEnter(Collider temas)//TEMAS ETTİGİM OBJENİN ETİKETİ SpaceShipse ve yol yapilmadıysa yol yap.
+    {
+        if(temas.gameObject.tag=="SpaceShip" && yolYapildi==false)
+        {
+            Instantiate(wayPrefab,new Vector3(transform.position.x,transform.position.y,transform.position.z+20),transform.rotation);
+            yolYapildi=true;
+            Destroy(this.gameObject,1f);//5 saniye sonra yolu destroy.5f,YOLUN MESH RENDERİ KAPALI OLDUGU İÇİN NE ZAMAN YOK OLDUGU ASLINDA ÖNEMSİZ.1F
+            SkorManager.skor+=5;
+        }
+    }
+}
