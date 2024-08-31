@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MeteorSpawner : MonoBehaviour
+{
+    public GameObject meteorPrefabi;
+    bool meteorSpawn=true;
+    // Start is called before the first frame update
+    void Start()
+    {
+        StartCoroutine(bekle());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
+    IEnumerator bekle()
+    {
+        while(meteorSpawn==true)
+        {
+            Instantiate(meteorPrefabi,transform.position,Quaternion.identity);
+            yield return new WaitForSeconds(0.6f);//0.5F
+        }
+    }
+}
