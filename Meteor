@@ -1,0 +1,84 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class Meteor : MonoBehaviour
+{
+    float meteorHizi,meteorBuyuklugu;
+    Rigidbody rb;
+    public int gidilenSerit,randomSkor;
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb=GetComponent<Rigidbody>();
+        meteorHizi=Random.Range(2.5f,3.5f);
+        gidilenSerit=Random.Range(1,11);//[1,10]
+        meteorBuyuklugu=Random.Range(0.1f,2.1f);
+        randomSkor=Random.Range(1,11);//YAKITTAN [1,10] ARASI RANDOM SKOR DÜŞECEK.
+        if (gidilenSerit == 1)//RANDOM SERIT ATAMASI
+        {
+            transform.position = new Vector3(-9, transform.position.y, transform.position.z + 30);
+        }
+        else if (gidilenSerit == 2)//RANDOM SERIT ATAMASI
+        {
+            transform.position = new Vector3(-7, transform.position.y, transform.position.z + 30);
+        }
+        else if (gidilenSerit == 3)//RANDOM SERIT ATAMASI
+        {
+            transform.position = new Vector3(-5, transform.position.y, transform.position.z + 30);
+        }
+        else if (gidilenSerit == 4)//RANDOM SERIT ATAMASI
+        {
+            transform.position = new Vector3(-3, transform.position.y, transform.position.z + 30);
+        }
+        else if (gidilenSerit == 5)//RANDOM SERIT ATAMASI
+        {
+            transform.position = new Vector3(-1, transform.position.y, transform.position.z + 30);
+        }
+        else if (gidilenSerit == 6)//RANDOM SERIT ATAMASI
+        {
+            transform.position = new Vector3(1, transform.position.y, transform.position.z + 30);
+        }
+        else if (gidilenSerit == 7)//RANDOM SERIT ATAMASI
+        {
+            transform.position = new Vector3(3, transform.position.y, transform.position.z + 30);
+        }
+        else if (gidilenSerit == 8)//RANDOM SERIT ATAMASI
+        {
+            transform.position = new Vector3(5, transform.position.y, transform.position.z + 30);
+        }
+        else if (gidilenSerit == 9)//RANDOM SERIT ATAMASI
+        {
+            transform.position = new Vector3(7, transform.position.y, transform.position.z + 30);
+        }
+        else if (gidilenSerit == 10)//RANDOM SERIT ATAMASI
+        {
+            transform.position = new Vector3(9, transform.position.y, transform.position.z + 30);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
+    void FixedUpdate()
+    {
+        rb.velocity=new Vector3(rb.velocity.x,
+        rb.velocity.y,
+        meteorHizi*Time.deltaTime*50*-1);//METEORUN GERİYE HAREKETİ.
+        transform.localScale = new Vector3(meteorBuyuklugu, meteorBuyuklugu, meteorBuyuklugu);
+        Destroy(this.gameObject,5f);//Meteorun yok olma süresi5f
+    }
+    void OnCollisionEnter(Collision temas)//EGER METEORLAR SpaceShipe ÇARPIŞIRSA SKOR1 ARTIP,YAKİT DÜSECEK.
+    {
+        if(temas.gameObject.tag=="SpaceShip")//meteor,uzay gemisine carparsa skor 1 artacak.
+        {
+            SkorManager.yakitSkor-=randomSkor;
+        }
+        if(SkorManager.yakitSkor<=0)
+        {
+            SceneManager.LoadScene(2);
+        }
+    }
+}
