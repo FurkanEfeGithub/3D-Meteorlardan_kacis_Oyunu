@@ -8,6 +8,7 @@ public class SpaceShip : MonoBehaviour
     Rigidbody rb;
     int i=1;
     public GameObject MermiPrefab;
+    public GameObject destroyEffect;//Particle system patlama efekti
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +44,12 @@ public class SpaceShip : MonoBehaviour
         {
             //transform.position=MermiPrefab.transform.position;
             Instantiate(MermiPrefab,transform.position,Quaternion.identity);
+            Instantiate(destroyEffect,transform.position,transform.rotation);//MERMİ ATIŞI OLDUGUNDA UZAY GEMİSİNDEN PATLAMA EFEKTİ ÇIKSIN.SİLAH MANTIGI GİBİ.
+        }
+        if(SkorManager.yakitSkor<=25)//YAKİTSKOR<=25 KALDIGINDA PATLAMA EFEKTİ ETKİNLEŞTİR.
+        {
+            Instantiate(destroyEffect,transform.position,transform.rotation);//PARTİCLE SYSTEM,PATLAMA EFEKTİ
         }
     }
+    
 }
