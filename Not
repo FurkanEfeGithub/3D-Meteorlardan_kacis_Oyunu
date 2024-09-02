@@ -5,3 +5,7 @@ Uzaygemisi-meteor oyunumda koydugum yolun amacı sadece şerit mantıgı,yolun k
 3)Uzay gemisi küplerle çarpıştıgında bir zaman sonra rotationu kayıyor bunu engellemek için rigidbodydeki freze rotationların hepsinin tikini aktif etmen lazım.
 
 4)Uzay gemisinin hareketi z ekseninde eger rigidbodyde freze positionun  z eksenini dondurursan uzay gemisinin z ekseninde ileri hareketini dondurmuş olursun.Uzay gemisi ileri hareket edemez.
+
+5)Diyelimki particular effectle bir patlama efekti yaptın.Bunu prefab yapsanda hiyerarşiden şimdilik silme çünkü bir özelligini degiştirmek istediginde hiyerarşiden degiştirirsin.Overrides>Aply all dersin prefablarada uygulanır.Ama eger hiyeraridekini silersen prafta degişiklik yapsanda sıkıntı yaşanıyor.Digerlerinde degişmiyor.
+
+6)Patlama efekti çoktu bunun azaltmak için particular efekte emission>orda counts 30 yazıyordu 15 yaptım azaldı.
