@@ -5,6 +5,8 @@ using UnityEngine;
 public class Mermi : MonoBehaviour
 {
     Rigidbody rb;
+    public GameObject smokeEffect;
+    public GameObject Meteor;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +23,13 @@ public class Mermi : MonoBehaviour
         rb.velocity.y,
         50*Time.deltaTime*50);
         Destroy(this.gameObject,2f);
+    }
+    void OnCollisionEnter(Collision temas)//EGER METEORLAR SpaceShipe ÇARPIŞIRSA SKOR1 ARTIP,YAKİT DÜSECEK.
+    {
+        if(temas.gameObject.tag=="Meteor")//meteor,uzay gemisine carparsa skor 1 artacak.SMOKE EFFECT ÇIKACAK VE MERMİNİN ÇARPTTIGI METEOR YOK OLACAK.
+        {
+            Instantiate(smokeEffect,transform.position,transform.rotation);//MERMİ METEORA ÇARPTIGINDA SMOKE EFFECT ÇIKSIN.PARTİCULAR EFFECT
+            Destroy(temas.gameObject);//METEORU YOK ET. COLLİSİON TEMAS OLDUGU İÇİN temas.gameObject dedim.
+        }
     }
 }
